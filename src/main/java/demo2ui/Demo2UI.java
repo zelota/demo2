@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * https://vaadin.com/docs/v8/framework/articles/IBGettingStartedWithVaadinSpringWithoutSpringBoot.html
+ *
+ * https://vaadin.com/framework/spring
+ *
+ * http://spring.io/guides/gs/crud-with-vaadin/
+ *
+ * https://vaadin.com/docs/framework/advanced/advanced-spring.html
  */
 @SpringUI
 @Theme("mytheme")
