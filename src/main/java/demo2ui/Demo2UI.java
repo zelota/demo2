@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * http://spring.io/guides/gs/crud-with-vaadin/
  *
  * https://vaadin.com/docs/framework/advanced/advanced-spring.html
+ *
+ * Spring Security:
+ * http://javawebtutor.com/articles/spring/spring-security-tutorial.php
  */
 @SpringUI
 @Theme("mytheme")
