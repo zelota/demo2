@@ -16,7 +16,14 @@ Docker
 ------
 - install: ```docker pull postgres:10.1```
 - start: ```docker run --name demo2 -e POSTGRES_PASSWORD=XXX -p 5432:5432 -d postgres```
-- stop: ```docker stop demo2```
+- update:
+```
+docker exec -ti demo2 sed -i 's/# \(en_US\.UTF-8.*\)/\1/g' /etc/locale.gen
+docker exec -ti demo2 sed -i 's/# \(hu_HU\.UTF-8.*\)/\1/g' /etc/locale.gen
+docker exec -ti demo2 locale-gen
+docker stop demo2
+docker start demo2
+```
 
 Tomcat
 ======

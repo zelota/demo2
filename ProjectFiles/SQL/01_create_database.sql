@@ -4,4 +4,4 @@
 create user demo2user LOGIN PASSWORD 'Password123.';
 
 -- adatbázis
-create database demo2 owner=demo2user ENCODING='UTF8'; -- LC_CTYPE='hu_HU.utf8';
+create database demo2 owner=demo2user ENCODING='UTF8' LC_COLLATE='hu_HU.utf8' LC_CTYPE='hu_HU.utf8' TEMPLATE template0;
