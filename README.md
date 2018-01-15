@@ -1,52 +1,57 @@
 demo2
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+Vaadin + Spring 5 (nem boot) demo.
 
+Ami kell
+========
+- Oracle Java 8
+- Tomcat 8.5.24
+- Postgres 10.1
 
-Workflow
+Postgres
 ========
 
-To compile the entire project, run "mvn install".
+Docker
+------
+- install: ```docker pull postgres:10.1```
+- start: ```docker run --name demo2 -e POSTGRES_PASSWORD=XXX -p 5432:5432 -d postgres```
+- stop: ```docker stop demo2```
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
+Tomcat
+======
 
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
+Install
+-------
 
-Client-Side compilation
--------------------------
+Letöltés innen: https://tomcat.apache.org/download-80.cgi
 
-The generated maven project is using an automatically generated widgetset by default. 
-When you add a dependency that needs client-side compilation, the maven plugin will 
-automatically generate it for you. Your own client-side customizations can be added into
-package "client".
+Setup
+-------
 
-Debugging client side code
-  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
-  - activate Super Dev Mode in the debug window of the application
-
-Developing a theme using the runtime compiler
--------------------------
-
-When developing the theme, Vaadin can be configured to compile the SASS based
-theme at runtime in the server. This way you can just modify the scss files in
-your IDE and reload the browser to see changes.
-
-To use the runtime compilation, open pom.xml and comment out the compile-theme 
-goal from vaadin-maven-plugin configuration. To remove a possibly existing 
-pre-compiled theme, run "mvn clean package" once.
-
-When using the runtime compiler, running the application in the "run" mode 
-(rather than in "debug" mode) can speed up consecutive theme compilations
-significantly.
-
-It is highly recommended to disable runtime compilation for production WAR files.
-
-Using Vaadin pre-releases
--------------------------
-
-If Vaadin pre-releases are not enabled by default, use the Maven parameter
-"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .
+- /conf/tomcat-users.xml (XXX <- jelszó!):
+```
+<role rolename="tomcat-admin"/>
+<role rolename="manager-gui"/>
+<user password="XXX" roles="tomcat-admin,manager-gui,manager-script,admin" username="tomcat"/>
+```
+- /conf/server.xml (a GlobalNamingResources részbe. XXX <- jelszó!): 
+```
+<!-- DEMO2 -->
+<Resource name="DEMO2" id="DEMO2" type="javax.sql.DataSource"
+    JdbcDriver="org.postgresql.Driver"
+    JdbcUrl="jdbc:postgresql://127.0.0.1:5432/"
+    validationQuery = "SELECT 1"
+    initialSize = "10"
+    testWhileIdle="true"
+    timeBetweenEvictionRunsMillis="30000"
+    testOnBorrow="true"
+    removeAbandoned = "true"
+    removeAbandonedTimeout = "120"
+    UserName="postgres"
+    Password="XXX"
+    jtaManaged="false"
+/>
+```
+- Postgres JDBC driver letöltés innen: https://jdbc.postgresql.org/download.html
+  <br/>Majd a driver másolása ide: ```/lib```
