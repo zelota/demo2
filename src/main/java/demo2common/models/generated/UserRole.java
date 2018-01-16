@@ -3,7 +3,7 @@
  */
 package demo2common.models.generated;
 
-import com.ash.commonlibrary.fw.models.abstracts.AbstractBaseEntity;
+import demo2common.models.abstracts.AbstractBaseEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,8 +19,8 @@ public class UserRole extends AbstractBaseEntity implements Serializable {
 
     private String description;
 
-    private Roles rolesByRolesId;
-    private Users usersByUsersId;
+    private Role roleByRoleId;
+    private User userByUserId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,20 +45,30 @@ public class UserRole extends AbstractBaseEntity implements Serializable {
 
     @Override
     public boolean equals( Object o ) {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
 
-        com.ash.commonlibrary.fw.models.generated.UserRole that = (com.ash.commonlibrary.fw.models.generated.UserRole) o;
+        demo2common.models.generated.UserRole that = (demo2common.models.generated.UserRole) o;
 
-        if ( id != null ? !id.equals(that.id) : that.id != null ) return false;
+        if ( id != null ? !id.equals(that.id) : that.id != null )
+            return false;
 
-        if ( description != null ? !description.equals(that.description) : that.description != null ) return false;
-        if ( created != null ? !created.equals(that.created) : that.created != null ) return false;
-        if ( creatorId != null ? !creatorId.equals(that.creatorId) : that.creatorId != null ) return false;
-        if ( modified != null ? !modified.equals(that.modified) : that.modified != null ) return false;
-        if ( modifierId != null ? !modifierId.equals(that.modifierId) : that.modifierId != null ) return false;
-        if ( validTo != null ? !validTo.equals(that.validTo) : that.validTo != null ) return false;
-        if ( version != null ? !version.equals(that.version) : that.version != null ) return false;
+        if ( description != null ? !description.equals(that.description) : that.description != null )
+            return false;
+        if ( created != null ? !created.equals(that.created) : that.created != null )
+            return false;
+        if ( creatorId != null ? !creatorId.equals(that.creatorId) : that.creatorId != null )
+            return false;
+        if ( modified != null ? !modified.equals(that.modified) : that.modified != null )
+            return false;
+        if ( modifierId != null ? !modifierId.equals(that.modifierId) : that.modifierId != null )
+            return false;
+        if ( validTo != null ? !validTo.equals(that.validTo) : that.validTo != null )
+            return false;
+        if ( version != null ? !version.equals(that.version) : that.version != null )
+            return false;
 
         return true;
     }
@@ -79,21 +89,21 @@ public class UserRole extends AbstractBaseEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "roles_id", referencedColumnName = "id")
-    public Roles getRolesByRolesId() {
-        return rolesByRolesId;
+    public Role getRoleByRoleId() {
+        return roleByRoleId;
     }
 
-    public void setRolesByRolesId( Roles rolesByRolesId ) {
-        this.rolesByRolesId = rolesByRolesId;
+    public void setRoleByRoleId( Role roleByRoleId ) {
+        this.roleByRoleId = roleByRoleId;
     }
 
     @ManyToOne
     @JoinColumn(name = "users_id", referencedColumnName = "id")
-    public Users getUsersByUsersId() {
-        return usersByUsersId;
+    public User getUserByUserId() {
+        return userByUserId;
     }
 
-    public void setUsersByUsersId( Users usersByUsersId ) {
-        this.usersByUsersId = usersByUsersId;
+    public void setUserByUserId( User userByUserId ) {
+        this.userByUserId = userByUserId;
     }
 }

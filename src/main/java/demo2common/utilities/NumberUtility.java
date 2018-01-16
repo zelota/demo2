@@ -3,7 +3,8 @@
  */
 package demo2common.utilities;
 
-import com.ash.commonlibrary.fw.helpers.ActionResult;
+
+import demo2common.helpers.ActionResult;
 
 /**
  * @author Varsányi Péter
