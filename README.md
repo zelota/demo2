@@ -1,7 +1,7 @@
 demo2
 ==============
 
-Vaadin + Spring 5 (nem boot) demo.
+Vaadin + Spring 4 (nem boot) demo.
 
 Ami kell
 ========
