@@ -25,6 +25,12 @@ docker stop demo2
 docker start demo2
 ```
 
+Adatbázis létrehozása
+---------------------
+- ProjectFiles/SQL/01_create_database.sql (postgres nevében kell futtatni!)
+- ProjectFiles/SQL/02_create_tables.sql (demo2user-el)
+- ProjectFiles/SQL/03_data.sql (demo2user-el)
+
 Tomcat
 ======
 
