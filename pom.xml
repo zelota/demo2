@@ -15,6 +15,7 @@
 
     <properties>
         <vaadin.version>8.2.1</vaadin.version>
+        <spring.security.version>4.2.3.RELEASE</spring.security.version>
         <vaadin.plugin.version>8.2.1</vaadin.plugin.version>
         <jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -90,29 +91,23 @@
         -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <!-- DOC: https://docs.spring.io/spring-security/site/docs/5.0.0.BUILD-SNAPSHOT/reference/htmlsingle/ -->
-        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>5.0.0.RELEASE</version>
+            <version>${spring.security.version}</version>
         </dependency>
-        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>5.0.0.RELEASE</version>
+            <version>${spring.security.version}</version>
         </dependency>
-        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>5.0.0.RELEASE</version>
+            <version>${spring.security.version}</version>
         </dependency>
-        -->
         <!-- logging - SLF4J -->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <!--
@@ -131,12 +126,19 @@
             <scope>test</scope>
         </dependency>
         -->
-        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+
 
         <!-- persistence - hibernate -->
         <dependency>
