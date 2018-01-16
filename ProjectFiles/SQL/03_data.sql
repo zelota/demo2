@@ -69,26 +69,26 @@ INSERT INTO PERSONS (ID, NAME, FULL_NAME, DESCRIPTION, CREATOR_ID, CREATED, VERS
 VALUES (1, 'Admin', 'Admin', 'App Admin', 1, now(), 1, '1');
 ALTER SEQUENCE PERSONS_id_seq RESTART WITH 2;
 
---Persons Orgs
+--Person Orgs
 INSERT INTO PERSONS_ORGANIZATIONS (ID, PERSONS_ID, ORGANIZATIONS_ID, MAIN_ORGANIZATION, CREATED, CREATOR_ID, VERSION)
 VALUES (1, 1, 1, 1, now(), 1, 1);
 ALTER SEQUENCE PERSONS_ORGANIZATIONS_id_seq RESTART WITH 2;
 
---Roles
+--Role
 INSERT INTO ROLES (ID, CODE, NAME, DESCRIPTION, CREATED, CREATOR_ID, VERSION, FIXED_CODE)
 VALUES (1, 'ADMIN', 'Admin', 'General application administration', now(), 1, 1, 'I');
 ALTER SEQUENCE ROLES_id_seq RESTART WITH 2;
 
---Users
+--User
 INSERT INTO USERS (ID, PERSONS_ID, LOGIN, PASSWORD, IS_ACTIVE, CREATED, CREATOR_ID, VERSION)
 VALUES (1, 1, 'admin', 'YkWITYMKbhcBEWLTlcpcEw==', '1', now(), 1, 1); -- admin
 ALTER SEQUENCE USERS_id_seq RESTART WITH 2;
 
---UsersRoles
+--UserRole
 INSERT INTO USERS_ROLES (ID, ROLES_ID, USERS_ID, CREATED, CREATOR_ID, VERSION) VALUES (1, 1, 1, now(), 1, 1);
 ALTER SEQUENCE USERS_ROLES_id_seq RESTART WITH 2;
 
--- functions
+-- function
 INSERT INTO functions (id, parent_id, code, name, created, creator_id, version, valid_to) VALUES
   (1, NULL, 'ANONYMOUS', 'Anonymous elérés. Mindenkinek kell, olyan amihez nem kell extra jog, csak login.', now(), 1,
    1, '2100.01.01');
@@ -149,15 +149,15 @@ VALUES (3, 1, 13, 'Szervezeti egység típus', 'menu.organizationstypes', 'ORGAN
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
 VALUES (4, 2, 11, 'Szervezeti egységek', 'menu.organizations', 'ORGANIZATIONS', now(), 1, 1, '2100.01.01', 10);
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
-VALUES (5, 2, 7, 'Felhasználók', 'menu.users', 'USERS', now(), 1, 1, '2100.01.01', 20);
+VALUES (5, 2, 7, 'Felhasználók', 'menu.user', 'USERS', now(), 1, 1, '2100.01.01', 20);
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
-VALUES (6, 2, 9, 'Személyek', 'menu.persons', 'PERSONS', now(), 1, 1, '2100.01.01', 30);
+VALUES (6, 2, 9, 'Személyek', 'menu.person', 'PERSONS', now(), 1, 1, '2100.01.01', 30);
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
-VALUES (7, 2, 5, 'Szerepkörök', 'menu.roles', 'ROLES', now(), 1, 1, '2100.01.01', 40);
+VALUES (7, 2, 5, 'Szerepkörök', 'menu.role', 'ROLES', now(), 1, 1, '2100.01.01', 40);
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
 VALUES (8, 2, 3, 'Rendszer paraméterek', 'menu.systemparams', 'SYSTEMPARAMS', now(), 1, 1, '2100.01.01', 70);
 INSERT INTO menus (id, parent_id, functions_id, name, code, view_name, created, creator_id, version, valid_to, order_num)
-VALUES (9, 2, 2, 'Eseménynapló', 'menu.auditlogs', 'AUDITLOGS', now(), 1, 1, '2100.01.01', 80);
+VALUES (9, 2, 2, 'Eseménynapló', 'menu.auditlog', 'AUDITLOGS', now(), 1, 1, '2100.01.01', 80);
 ALTER SEQUENCE menus_id_seq RESTART WITH 10;
 
 -- systemparams

@@ -15,7 +15,7 @@ Postgres
 Docker
 ------
 - install: ```docker pull postgres:10.1```
-- start: ```docker run --name demo2 -e POSTGRES_PASSWORD=XXX -p 5432:5432 -d postgres```
+- start: ```docker run --name demo2 -e POSTGRES_PASSWORD=XXX -p 5432:5432 -d postgres:10.1```
 - update:
 ```
 docker exec -ti demo2 sed -i 's/# \(en_US\.UTF-8.*\)/\1/g' /etc/locale.gen
@@ -36,11 +36,11 @@ Letöltés innen: https://tomcat.apache.org/download-80.cgi
 Setup
 -------
 
-- /conf/tomcat-users.xml (XXX <- jelszó!):
+- /conf/tomcat-user.xml (XXX <- jelszó!):
 ```
 <role rolename="tomcat-admin"/>
 <role rolename="manager-gui"/>
-<user password="XXX" roles="tomcat-admin,manager-gui,manager-script,admin" username="tomcat"/>
+<user password="XXX" role="tomcat-admin,manager-gui,manager-script,admin" username="tomcat"/>
 ```
 - /conf/server.xml (a GlobalNamingResources részbe. XXX <- jelszó!): 
 ```
@@ -57,7 +57,7 @@ Setup
     removeAbandonedTimeout = "120"
     UserName="postgres"
     Password="XXX"
-    jtaManaged="false"
+    jtaManaged="true"
 />
 ```
 - Postgres JDBC driver letöltés innen: https://jdbc.postgresql.org/download.html

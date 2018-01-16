@@ -59,7 +59,7 @@ public class UserData implements Serializable {
 //     * Egy ilyennek KELL lennie a DB-ben.
 //     * NEM lehet null!
 //     */
-//    private Organizations mainOrganization;
+//    private Organization mainOrganization;
 //
 //    /**
 //     * Login status.
@@ -68,23 +68,23 @@ public class UserData implements Serializable {
 //    /**
 //     * Logged in user.
 //     */
-//    private Users loggedInUser;
+//    private User loggedInUser;
 //    /**
 //     * Substituted user. Null if it's not a substitution situation.
 //     */
-//    private Users substitutedUser;
+//    private User substitutedUser;
 //    /**
-//     * Functions (permissions) collection. Logged in user's or (if exists) the
+//     * Function (permissions) collection. Logged in user's or (if exists) the
 //     * substituted user's functions.
 //     */
-//    private List<Functions> functions;
+//    private List<Function> functions;
 //    /**
 //     * A kiválasztott vállalat.
 //     * A felületen (a lenyílóban) kiválasztott szervezet.
 //     * Értéke lehet null!
 //     * Ha null, akkor a main orgot adja vissza.
 //     */
-//    private Organizations selectedOrganization;
+//    private Organization selectedOrganization;
 //    /**
 //     * A selectekben az adatkörre szűkítésére vonatkozó szervezet.
 //     * Ezt - és csak ezt! - szabad/kell használni a lekérdezésekben, ahol adatörre kell szűkíteni!
@@ -93,12 +93,12 @@ public class UserData implements Serializable {
 //     * Értéke lehet null!
 //     * Ha null, akkor a selected orgot adja vissza, ha az is null, akkor main org-ot.
 //     */
-//    private Organizations dataSetOrganization;
+//    private Organization dataSetOrganization;
 //    /**
 //     * List of organizations.
 //     * Az összes szervezet, amelyhez a felhasználónak joga van.
 //     */
-//    private List<Organizations> organizations;
+//    private List<Organization> organizations;
 //
 //    /**
 //     * A bejelentkezett felhasználó fő (vagy kiválasztott) szervezetének a
@@ -132,12 +132,12 @@ public class UserData implements Serializable {
 //     */
 //    @PostConstruct
 //    public void logout() {
-//        this.functions = new ArrayList<Functions>();
+//        this.functions = new ArrayList<Function>();
 //        this.loginStatus = LOGINSTATES.LOGGEDOUT;
 //        this.loggedInUser = null;
 //        this.substitutedUser = null;
 //        this.clientSource = "";
-//        this.organizations = new ArrayList<Organizations>();
+//        this.organizations = new ArrayList<Organization>();
 //    }
 //
 //    /**
@@ -159,11 +159,11 @@ public class UserData implements Serializable {
 //    }
 //
 //    /**
-//     * Get user's permissions (Functions).
+//     * Get user's permissions (Function).
 //     *
-//     * @return Functions collection.
+//     * @return Function collection.
 //     */
-//    public List<Functions> getFunctions() {
+//    public List<Function> getFunctions() {
 //        return functions;
 //    }
 //
@@ -179,9 +179,9 @@ public class UserData implements Serializable {
 //    /**
 //     * Get logged in user.
 //     *
-//     * @return Logged in Users instance.
+//     * @return Logged in User instance.
 //     */
-//    public Users getLoggedinUser() {
+//    public User getLoggedinUser() {
 //        return this.loggedInUser;
 //    }
 //
@@ -191,16 +191,16 @@ public class UserData implements Serializable {
 //     * @return If substituted user is null, return logged in user. Otherwise
 //     * substituted user.
 //     */
-//    public Users getUser() {
+//    public User getUser() {
 //        return (this.substitutedUser == null) ? this.loggedInUser : this.substitutedUser;
 //    }
 //
 //    /**
-//     * Set user's permissions (Functions).
+//     * Set user's permissions (Function).
 //     *
-//     * @param functions Functions collections.
+//     * @param functions Function collections.
 //     */
-//    public void setFunctions(List<Functions> functions) {
+//    public void setFunctions(List<Function> functions) {
 //        this.functions = functions;
 //    }
 //
@@ -221,7 +221,7 @@ public class UserData implements Serializable {
 //     * @param loggedInUser    Logged in user.
 //     * @param substitutedUser Substituted user or null.
 //     */
-//    public void setUser(Users loggedInUser, Users substitutedUser) {
+//    public void setUser(User loggedInUser, User substitutedUser) {
 //        this.loggedInUser = loggedInUser;
 //        this.substitutedUser = substitutedUser;
 //        if (substitutedUser != null && loggedInUser.getId().equals(substitutedUser.getId())) {
@@ -270,14 +270,14 @@ public class UserData implements Serializable {
 //     * entity-ben relatedPerson) akkor a kapcsolat másik szereplőjének az org-jait (unique módon)
 //     * hozzáadjuk a listához
 //     *
-//     * @return Organizations list.
+//     * @return Organization list.
 //     */
-//    public List<Organizations> getOrganizations() {
+//    public List<Organization> getOrganizations() {
 //        if (this.organizations == null) {
-//            this.organizations = new ArrayList<Organizations>();
+//            this.organizations = new ArrayList<Organization>();
 //        }
 //        if (isLoggedIn() && this.organizations.isEmpty() && getUser().getPersonsId() != null) {
-//            List<PersonsOrganizations> pos = getUser().getPersonsId().getPersonsOrganizationsList().stream()
+//            List<PersonOrganization> pos = getUser().getPersonsId().getPersonsOrganizationsList().stream()
 //                    .filter(e -> DateUtility.isValidDate(e.getValidTo()))
 //                    .collect(Collectors.toList());
 //            pos.stream().forEach((po) -> {
@@ -293,7 +293,7 @@ public class UserData implements Serializable {
 //     *
 //     * @param organizations
 //     */
-//    public void setOrganizations(List<Organizations> organizations) {
+//    public void setOrganizations(List<Organization> organizations) {
 //        this.organizations = organizations;
 //    }
 //
@@ -320,7 +320,7 @@ public class UserData implements Serializable {
 //    /**
 //     * A felhasználó technikai felhasználó-e?
 //     * <p>
-//     * - Nem tartozik hozzá Persons
+//     * - Nem tartozik hozzá Person
 //     *
 //     * @return
 //     */
@@ -340,7 +340,7 @@ public class UserData implements Serializable {
 //            getOrganizations();
 //        }
 //
-//        return organizations.stream().map(Organizations::getId).collect(Collectors.toList());
+//        return organizations.stream().map(Organization::getId).collect(Collectors.toList());
 //    }
 //
 //    /**
@@ -349,7 +349,7 @@ public class UserData implements Serializable {
 //     *
 //     * @return Organization.
 //     */
-//    public Organizations getOrganization() {
+//    public Organization getOrganization() {
 //        return getUser() == null ? null : mainOrganization;
 //    }
 //
@@ -382,11 +382,11 @@ public class UserData implements Serializable {
 //        return false;
 //    }
 //
-//    public Organizations getMainOrganization() {
+//    public Organization getMainOrganization() {
 //        return this.mainOrganization;
 //    }
 //
-//    public void setMainOrganization(Organizations mainOrganization) {
+//    public void setMainOrganization(Organization mainOrganization) {
 //        this.mainOrganization = mainOrganization;
 //    }
 //
@@ -412,9 +412,9 @@ public class UserData implements Serializable {
 //     * Értéke lehet null!
 //     * Ha null, akkor a selected orgot adja vissza, ha az is null, akkor a main org-ot.
 //     *
-//     * @return A query-kben használandó <code>Organizations</code> objektum.
+//     * @return A query-kben használandó <code>Organization</code> objektum.
 //     */
-//    public Organizations getDataSetOrganization() {
+//    public Organization getDataSetOrganization() {
 //        if (dataSetOrganization != null) {
 //            return dataSetOrganization;
 //        }
@@ -427,20 +427,20 @@ public class UserData implements Serializable {
 //    /**
 //     * A selectekben az adatkörre szűkítésére vonatkozó szervezet beállítása.
 //     *
-//     * @param organization A query-kben használandó <code>Organizations</code> objektum. Lehet null.
+//     * @param organization A query-kben használandó <code>Organization</code> objektum. Lehet null.
 //     */
-//    public void setDataSetOrganization(Organizations organization) {
+//    public void setDataSetOrganization(Organization organization) {
 //        this.dataSetOrganization = organization;
 //    }
 //
-//    public Organizations getSelectedOrganization() {
+//    public Organization getSelectedOrganization() {
 //        if (selectedOrganization == null) {
 //            return mainOrganization;
 //        }
 //        return selectedOrganization;
 //    }
 //
-//    public void setSelectedOrganization(Organizations selectedOrganization) {
+//    public void setSelectedOrganization(Organization selectedOrganization) {
 //        this.selectedOrganization = selectedOrganization;
 //    }
 
